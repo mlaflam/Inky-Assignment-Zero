@@ -23,7 +23,7 @@ Then look around.
 == Alternate_Directions ==
 + [Tree] -> Go_North
 + [Flower Field] -> Go_East
-* [I SEE A SQUIRREL] -> Chase_Squirrel
+* [I SEE A SQUIRREL] -> Go_South
 
 //could fix conditional w. directions 
 -> Dig

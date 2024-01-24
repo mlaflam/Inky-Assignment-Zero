@@ -1,53 +1,165 @@
-Our first Ink story! Ready?
+//Start of my story
 
-// Look at the choices to the right and click on one. 
-// Then click the little double back arrow in the upper right of this window and try a different choice.
+Welcome to Bork.
+West of Dog House. 
 
-[PRO TIP - You'll need to read the "code" over on the left AND the "game" over on the right to make sense of this assignment.]
+You are in an open field west of a big white dog house with a padlocked front door. 
+You can smell a bone near. 
 
-* I am ready 
+//INITIAL DIRECTIONS
+-> Initial_Directions
+== Initial_Directions ==
++ [Go North] -> Go_North
++ [Go East] -> Go_East
++ [Go West] -> Go_West
++ [Go South] -> Go_South
+* [Dogs don't know directions??] -> No_Direction
 
-Great then we can begin!
+== No_Direction ==
+Then look around.
+-> Alternate_Directions
 
-* I need a moment
+-> Alternate_Directions
+== Alternate_Directions ==
++ [Tree] -> Go_North
++ [Flower Field] -> Go_East
+* [I SEE A SQUIRREL] -> Chase_Squirrel
 
-Ok take your time...
+//could fix conditional w. directions 
+-> Dig
+== Dig ==
+{ Dig > 2:
+    You dig up the surrounding dirt. You find a key. -> House_Direction
+    }
+{ Dig < 3:
+    You dig up the surrounding dirt. You find nothing. -> Dig_Directions
+}
 
-* Please stop the bus I'd like to get off
+-> Dig_Directions 
+==Dig_Directions ==
+    + [Go North] -> Go_North
+    + [Go East] -> Go_East
+    + [Go West] -> Go_West
+    + [Go South] -> Go_South
 
-Sorry the bus door is broken :(
 
-- You'll notice in the code to the left that choices have an asterisk; when you click on one in the game to the right you see the text that is on the next line AFTER the line with the asterisk. In Ink, the asterisk signifies a "Choice"
+//EXTRA DIRECTIONS
+-> Sniff
+== Sniff ==
+You sniff the flowers. It is relaxing. But you must continue your mission. Or else...
++ [Dig near the missing flowers] -> Dig
++ [Go North] -> Go_East
++ [Go West] -> Go_West
++ [Go South] -> Go_South
++ [Sniff more flowers] -> Bee
 
-* Yes I can see that
 
-You can even just have a single choice (like the one above) to signify the player / reader needs to click to move forward. 
+//DEAD DIRECTIONS
+-> Bee
+== Bee ==
+You sniff more flowers. You feel even better. You go to sniff another flower. There is a bee on it. 
+IT STINGS YOU. YOU ARE ALLERGIC.
+You start to feel dizzy and pass out. 
+No bone for you this time.  
+-> END
 
-- Importantly, choices will keep stacking up no matter how much text you write in between them. The "in between" text is simply revealed when you make the choice. 
+-> Hollow
+== Hollow == 
+You stick your snout in the hollow. You can feel something. You try to grab it. 
+IT BITES YOU. IT IS A SNAKE.
+You start to feel dizzy and pass out. 
+No bone for you this time.  
+-> END
 
-BUT! If you put a hyphen at the start of a line of text, this will "break" the choice chain and the player will end up at that line no matter which choice they make. In Ink the hyphen signifies a "Gather" 
+-> House_Direction
+== House_Direction ==
+* [Go to house] -> House
 
-* We can just
-* Keep writing choices
-* On and on
-* and they will continue to stack up 
+-> House
+== House ==
+//FIX THIS END 
+You approach the house. You have the key. 
++ [Use the Key] -> Key
 
-Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". Even if we write a gigantic paragraph "in between". 
+-> Key
+== Key ==
+//FIX THIS END 
+You're a dog. How are you supposed to use a key??
++ [Break down door] -> Bone
 
-* the next choice will appear in the stack 
+-> Bone
+== Bone ==
+You've found the bone! Best day ever!
+-> END
 
-because that big paragraph is effectively "hidden" in between the choice (you have to click on that choice to see the paragraph inside, or this choice to see this paragraph)
 
-- No matter which choice we pick, we'll always end up here because of the hyphen at the start of the line. 
+-> North_Directions
+== North_Directions ==
++ [Dig nearby pile of dirt] -> Dig
+* [Look inside the tree hollow] -> Hollow
++ [Go East] -> Go_East
++ [Go West] -> Go_West
++ [Go South] -> Go_South
 
-[PRO TIP - you can click the single back arrow in the upper right of this window to go back one choice instead of to the very beginning of the game.]
+-> East_Directions
+== East_Directions ==
++ [Dig up near the missing flowers] -> Dig
+* [Smell the roses] -> Sniff
++ [Go North] -> Go_North
++ [Go West] -> Go_West
++ [Go South] -> Go_South
 
-DON'T FORGET to read the code to the left if you've just been clicking through the game on the right. You'll need to read both to understand what's going on. 
+-> West_Directions
+== West_Directions ==
+* [Go North] -> Go_North
+* [Go East] -> Go_East
+* [Go South] -> Go_South
 
-HINT: the final instructions are only in the code!
+-> South_Directions
+== South_Directions ==
++ [Dig nearby pile of dirt] -> Dig
++ [Go North] -> Go_North
++ [Go East] -> Go_East
++ [Go West] -> Go_West
 
-// Now you try! Use these two tools: 
-// the asterix * (for Choices)
-// and 
-// the hyphen - (for Gathers)
-// to construct a conversation with some choices.
+//SOUTH STORY - squirrel 
+-> Chase_Squirrel
+== Chase_Squirrel ==
+You chase the squirrel vigourously to no avail. You are tired. 
+* [Sleep]
+
+-> Go_Sleep 
+== Go_Sleep ==
+You wake up well rested. You must not forget your goal. Find. The. Bone. 
+* [Dig nearby pile of dirt] -> Dig
+* [Go North] -> Go_North
+* [Go East] -> Go_East
+* [Go West] -> Go_West
+
+== Go_South ==
+{ Go_South < 2:
+    You see a squirrel. MUST CHASE SQUIRREL!
+    -> Chase_Squirrel
+    }
+{ Go_South > 1:
+    The squirrel is gone. You notice some upturned dirt. Maybe its where the squirrel's stash is. -> South_Directions
+}
+
+
+//NORTH STORY 
+
+== Go_North ==
+You are infront of a large maple tree. At the bottom of the tree there is a small hollow. 
+Next to the tree there is a patch of grass with freshly turned up dirt. 
+-> North_Directions
+
+
+//EAST STORY 
+== Go_East ==
+You are in a lush field of flowers. You notice a patch of flowes missing. 
+-> East_Directions
+
+//WEST SIDE STORY 
+== Go_West ==
+You are back where you started. Go somewhere else. 
+-> West_Directions
